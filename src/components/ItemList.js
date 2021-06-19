@@ -3,60 +3,35 @@ import { connect } from 'react-redux';
 import { itemsFetchData } from '../operations/items';
 import itemSelectors from '../selectors/items';
 import Item from './Item';
+import List from './List'
 
 class ItemList extends Component {
     componentDidMount() {
         this.props.fetchData('http://5af1eee530f9490014ead8c4.mockapi.io/items');
     }
 
-    renderItemList(parentList, list) {
-        return parentList.map(el => this.findNestedItems(list, el))
-    }
-
-    findNestedItems(list, item) {
-        let nestedList = [];
-        let index = item.id;
-
-        list.forEach(listItem => {
-            if (listItem.parent_id === index) {
-                nestedList.push(listItem)
-            }
-        })
-
-        return nestedList.length > 0
-            ? (<Item
-                key={item.id}
-                label={item.label}
-                children={this.renderItemList(nestedList, list)}
-            />) : (<Item
-                key={item.id}
-                label={item.label}
-            />)
-    }
-
     render() {
-        const { firstList, childrenItems, isLoadingItems, isError } = this.props;
+        const { items, isLoadingItems, isError } = this.props;
+
         return (
-            <ul>
+            <div>
                 {isLoadingItems && <h1>Loading...</h1>}
                 {isError && alert(isError)}
-                {this.renderItemList(firstList, childrenItems)}
-            </ul>   
+                <List items={items} />
+            </div>
         );
     }
 }
 
 ItemList.propTypes = {
+    items: PropTypes.array.isRequired,
     fetchData: PropTypes.func.isRequired,
-    firstList: PropTypes.array.isRequired,
-    childrenItems: PropTypes.array,
     isLoadingItems: PropTypes.bool,
     isError: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
-    firstList: itemSelectors.getFirstList(state),
-    childrenItems: itemSelectors.getChildrenItems(state),
+    items: itemSelectors.getItems(state),
     isLoadingItems: itemSelectors.getIsLoading(state),
     isError: itemSelectors.getIsError(state),
 });

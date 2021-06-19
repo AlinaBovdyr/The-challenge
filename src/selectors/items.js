@@ -1,14 +1,11 @@
+const getItems = state => state.items;
+
 const getIsLoading = state => state.isLoading;
 
 const getIsError = state => state.error;
 
-const getFirstList = state => state.items.filter(({parent_id}) => parent_id === 0)
-
-const getChildrenItems = state => state.items.filter(({ parent_id }) => parent_id !== 0)
-
 export default {
+    getItems,
     getIsLoading,
     getIsError,
-    getFirstList,
-    getChildrenItems
 }

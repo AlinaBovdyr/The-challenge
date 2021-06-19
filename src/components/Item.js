@@ -5,14 +5,14 @@ const Item = ({ label, children }) => {
     return (
         <li>
             {label}
-            <ul>{children}</ul>
+            {children}
         </li>
     );
 };
 
 Item.propTypes = {
     label: PropTypes.string.isRequired,
-    children: PropTypes.array,
+    children: PropTypes.node,
 };
 
 export default Item;
