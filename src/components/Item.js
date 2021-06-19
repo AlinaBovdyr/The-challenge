@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Item = ({label, children}) => {
+const Item = ({ label, children }) => {
     return (
         <li>
             {label}
