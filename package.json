@@ -6,7 +6,9 @@
   "scripts": {
     "build": "nwb build-react-app",
     "clean": "nwb clean-app",
-    "start": "nwb serve-react-app"
+    "start": "nwb serve-react-app",
+    "test": "nwb test",
+    "test:coverage": "nwb test --coverage"
   },
   "dependencies": {
     "react": "^15.3.2",
@@ -16,7 +18,12 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
-    "nwb": "^0.25.2"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-json": "^3.0.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "nwb": "^0.25.2",
+    "prettier": "^2.3.1"
   },
   "author": "",
   "license": "MIT",

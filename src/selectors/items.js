@@ -5,7 +5,7 @@ const getIsLoading = state => state.isLoading;
 const getIsError = state => state.error;
 
 export default {
-    getItems,
-    getIsLoading,
-    getIsError,
+  getItems,
+  getIsLoading,
+  getIsError,
 }
